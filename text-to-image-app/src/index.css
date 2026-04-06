@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap');
+
+:root {
+  --color-primary: #4F46E5;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #818CF8;
+  --color-accent: #EA580C;
+  --color-background: #EEF2FF;
+  --color-foreground: #1E1B4B;
+  --color-muted: #EBEEF8;
+  --color-border: #C7D2FE;
+  --color-destructive: #DC2626;
+  --color-ring: #4F46E5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Crimson Pro', serif;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1300px;
+  padding: 2rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Claymorphism Split-Card Layout */
+.clay-card {
+  width: 100%;
+  background: var(--color-on-primary);
+  border-radius: 32px;
+  border: 1px solid var(--color-border);
+  padding: 2rem;
+  box-shadow: 
+    12px 12px 32px rgba(199, 210, 254, 0.45),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.9), 
+    inset -2px -2px 6px rgba(199, 210, 254, 0.3);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .clay-card {
+    padding: 3rem;
+    grid-template-columns: 350px 1fr;
+    gap: 3.5rem;
+    min-height: 600px;
+  }
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  text-align: left;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.header p {
+  color: var(--color-foreground);
+  font-size: 1.1rem;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex-grow: 1;
+}
+
+.prompt-input {
+  width: 100%;
+  background: var(--color-muted);
+  border: 2px solid var(--color-border);
+  border-radius: 20px;
+  color: var(--color-foreground);
+  font-family: inherit;
+  font-size: 1.1rem;
+  padding: 1.25rem;
+  resize: vertical;
+  min-height: 150px;
+  box-shadow: inset 3px 3px 6px rgba(199, 210, 254, 0.3), inset -3px -3px 6px #ffffff;
+  transition: all 0.3s ease;
+  line-height: 1.5;
+}
+
+.prompt-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: inset 3px 3px 6px rgba(199, 210, 254, 0.3), inset -3px -3px 6px #ffffff, 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.prompt-input::placeholder {
+  color: var(--color-secondary);
+}
+
+/* Claymorphism Button - Softer Refinement */
+.clay-btn {
+  background: var(--color-accent);
+  color: var(--color-on-primary);
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 18px;
+  padding: 1.25rem;
+  cursor: pointer;
+  box-shadow: 
+    0px 5px 0px #C2410C,
+    inset 2px 2px 4px rgba(255, 255, 255, 0.35),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 150ms ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.clay-btn:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.clay-btn:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 
+    0px 2px 0px #C2410C,
+    inset 2px 2px 4px rgba(255, 255, 255, 0.35),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.clay-btn:disabled {
+  background: var(--color-border);
+  color: var(--color-foreground);
+  box-shadow: 0px 5px 0px var(--color-secondary);
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.8;
+}
+
+/* Error message */
+.error-message {
+  color: var(--color-destructive);
+  background: #FEF2F2;
+  border: 2px solid #FECACA;
+  padding: 1rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* Image display - Wider, more prominent */
+.image-display {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  border-radius: 24px;
+  background: var(--color-muted);
+  border: 3px dashed var(--color-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 4px 4px 10px rgba(199, 210, 254, 0.4), inset -4px -4px 10px #ffffff;
+}
+
+@media (min-width: 900px) {
+  .image-display {
+    aspect-ratio: auto;
+  }
+}
+
+.image-display.has-image {
+  border-style: solid;
+  border-color: var(--color-border);
+  border-width: 1px;
+}
+
+.generated-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  border-radius: 23px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.placeholder-text {
+  color: var(--color-secondary);
+  font-size: 1.15rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.placeholder-text svg {
+  width: 64px;
+  height: 64px;
+  stroke: var(--color-secondary);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* Loader */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 5px solid var(--color-border);
+  border-radius: 50%;
+  border-top-color: var(--color-primary);
+  animation: spin 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.loading-text {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
